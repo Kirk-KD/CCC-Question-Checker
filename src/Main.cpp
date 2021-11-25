@@ -15,7 +15,7 @@ string solution(vector<string> input) {
 }
 
 int main() {
-    Question question("j1", solution);
+    Question question("j1", solution); /* Edit question name */
     question.doProvidedTestCases();
 
     cout << "(ENTER to quit)" << endl;

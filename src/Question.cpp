@@ -2,6 +2,7 @@
 #include <iostream>
 #include <fstream>
 #include <filesystem>
+#include <chrono>
 namespace fs = std::filesystem;
 
 using namespace std;
@@ -86,7 +87,13 @@ void Question::doProvidedTestCases() {
 	int sample_num = 1;
 
 	while (inputs_it != inputs.end()) {
-		string actual_out = solution_func(splitString(*inputs_it, '\n'));
+		vector<string> splited = splitString(*inputs_it, '\n');
+
+		auto start_time = chrono::high_resolution_clock::now();
+		string actual_out = solution_func(splited);
+		auto stop_time = chrono::high_resolution_clock::now();
+
+		auto duration = chrono::duration_cast<chrono::microseconds>(stop_time - start_time);
 
 		cout << "  ====== Sample #" << sample_num + 1 << " ======" << endl << endl;
 		cout << "    ----------- Input -----------" << endl << addIndent(*inputs_it)  << endl << endl;
