@@ -6,7 +6,8 @@
 
 using namespace std;
 
-class Question {
+class Question
+{
 public:
 	string question_name;
 	function<string(vector<string>)> solution_func;
