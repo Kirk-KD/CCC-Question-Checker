@@ -9,15 +9,23 @@ using namespace std;
 class Question
 {
 public:
-	string question_name;
-	function<string(vector<string>)> solution_func;
+    enum class Mode
+    {
+        ProvidedTestCases,
+        CustomInput
+    };
 
-	Question(string question_name, function<string(vector<string>)> solution_func);
+    string question_name;
+    function<string(vector<string>)> solution_func;
 
-	void doProvidedTestCases();
+    Question(string question_name, function<string(vector<string>)> solution_func);
 
-	void doCustomInput(string inputs[]);
+    void checkSolution(Question::Mode mode);
 
 private:
-	tuple<vector<string>, vector<string>> readSamples();
+    tuple<vector<string>, vector<string>> readSamples();
+
+    void doProvidedTestCases();
+
+    void doCustomInput();
 };
